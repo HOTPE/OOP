@@ -1,0 +1,67 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+class student {
+private:
+	string msv, hoten, ns, lop;
+	double gpa;
+public:
+	student() {}
+	student(string msv,string hoten,string ns,string lop, double gpa)
+	{
+		this->msv = msv;
+		this->hoten = hoten;
+		this->ns = ns;
+		this->lop = lop;
+		this->gpa = gpa;
+	}
+	void Chuanhoaten()
+	{
+		stringstream ss(hoten);
+		string res = "", tmp;
+		while (ss >> tmp)
+		{
+			res += toupper(tmp[0]);
+			for (int i = 1; i < tmp.size(); i++)
+			{
+				res += tolower(tmp[i]);
+			}
+			res += " ";
+		}
+		res.pop_back();
+		hoten = res;
+	}
+	void Chuanhoans()
+	{
+		if (ns[1] == '/')
+		{
+			ns += '0' + ns;
+		}
+		else if (ns[4] == '/')
+		{
+			ns.insert(3, "0");
+		}
+	}
+	void nhap()
+	{
+		getline(cin, msv);
+		getline(cin, hoten);
+		getline(cin, ns);
+		getline(cin, lop);
+		cin >> gpa;
+	}
+	void in()
+	{
+		cout << msv << " " << hoten << " " << ns << " " << lop << " " << gpa;
+	}
+};
+int main()
+{
+	student sv1;
+	sv1.nhap();
+	sv1.Chuanhoaten();
+	sv1.Chuanhoans();
+	sv1.in();
+	return 0;
+}

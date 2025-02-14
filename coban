@@ -1,0 +1,36 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+class customer {
+private:
+	string makhachhang, hoten, diachi, phone, email;
+public:
+	customer() {}
+	customer(string makhachhang, string hoten, string diachi, string phone, string email)
+	{
+		this->makhachhang = makhachhang;
+		this->hoten = hoten;
+		this->diachi = diachi;
+		this->phone = phone;
+		this->email = email;
+	}
+	void nhap()
+	{
+		getline(cin, makhachhang);
+		getline(cin, hoten);
+		getline(cin, diachi);
+		getline(cin, phone);
+		getline(cin, email);
+	}
+	void in()
+	{
+		cout << makhachhang << " " << hoten << " " << diachi << " " << phone << " " << email << endl;
+	}
+};
+int main()
+{
+	customer tt;
+	tt.nhap();
+	tt.in();
+}

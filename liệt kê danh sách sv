@@ -1,0 +1,84 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <iomanip>
+#include <vector>
+using namespace std;
+int cnt = 0;
+class student {
+private:
+	string ma, hoten, ns, lop;
+	double gpa;
+public:
+	student() {}
+	student(string ma, string hoten, string ns, string lop, double gpa)
+	{
+		this->ma = ma;
+		this->hoten = hoten;
+		this->ns = ns;
+		this->lop = lop;
+		this->gpa = gpa;
+	}
+	void Chuanhoaten()
+	{
+		stringstream ss(hoten);
+		string res = "", tmp;
+		while (ss >> tmp)
+		{
+			res += toupper(tmp[0]);
+			for (int i = 1; i < tmp.size(); i++)
+			{
+				res += tolower(tmp[i]);
+			}
+			res += " ";
+		}
+		res.pop_back();
+		hoten = res;
+	}
+
+	void Chuanhoans()
+	{
+		if (ns[1] == '/')
+		{
+			ns += '0' + ns;
+		}
+		else if (ns[4] == '/')
+		{
+			ns.insert(3, "0");
+		}
+	}
+	void nhap()
+	{
+		++cnt;
+		string tmp = to_string(cnt);
+		tmp = string(3 - tmp.size(), '0') + tmp;
+		ma = "SV" + tmp;
+		cin.ignore();
+		getline(cin, hoten);
+		getline(cin, ns);
+		getline(cin, lop);
+		cin >> gpa;
+	}
+	void in()
+	{
+		cout << ma << " " << hoten << " " << ns << " " << lop << " " << gpa << endl;
+	}
+};
+int main()
+{
+	int n;
+	cin >> n;
+	cin.ignore();
+	vector <student> sv(n);
+	for (int i = 0; i < n; i++)
+	{
+		sv[i].nhap();
+		sv[i].Chuanhoaten();
+		sv[i].Chuanhoans();
+	}
+	for (int i = 0; i < n; i++)
+	{
+		sv[i].in();
+	}
+	return 0;
+}
